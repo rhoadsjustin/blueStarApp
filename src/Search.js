@@ -44,14 +44,21 @@ class Search extends Component {
     }
 
     render(){
+        //launch info
         const LaunchInfoNodes = this.state.launchArray.map((launch) => {
+            //list of agencies
+           const agencyNodes = launch.rocket.agencies.map((agency) => {
+                var agencyNames = agency.name
+                return agencyNames
+            })
             return(
                 <LaunchInfoComp
-                    launchID={launch.id}
+                //unique id for iterator
+                    key={launch.id}
                     launchName={launch.name}
                     launchStartTime={launch.windowstart}
+                    agencyInfoNames={agencyNodes}
                     rocketName={launch.rocket.name}
-                    rocketAgencies={launch.rocket.agencies}
                     launchLocation={launch.location.name}
                     rocketImage={launch.rocket.imageUrl}>
                  </LaunchInfoComp>
@@ -70,7 +77,9 @@ class Search extends Component {
                         </button>
                     </div>
                     <div>
+                        <ul>
                    {LaunchInfoNodes}
+                   </ul>
                         </div>
                     </div>
         )
