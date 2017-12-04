@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import LaunchInfoComp from './components/LaunchInfoComp'
 class Search extends Component {
     constructor(){
         super()
         this.state = {
             startDate: '',
-            endDate: ''
+            endDate: '',
+            launchArray: []
         }
         this.handleChange = this.handleChange.bind(this);
         this.getLaunchSchedule = this.getLaunchSchedule.bind(this);
@@ -31,13 +32,31 @@ class Search extends Component {
                         return data;
                     
                     }) // Transform the data into json
-            .then(function (data) {
-                // Create and append the li's to the ul
+            .then((data) => {
+                // taking the launch data array to manipulate
+                //TODO: Need the name, window start time, rocket name, list of space agencies associated with the Rocket, launch location name/country, image of rocket (if available)
                 console.log(data)
+                let launchesList = data.launches
+                this.setState({
+                    launchArray: launchesList
+                })
             })
     }
 
     render(){
+        const LaunchInfoNodes = this.state.launchArray.map((launch) => {
+            return(
+                <LaunchInfoComp
+                    launchID={launch.id}
+                    launchName={launch.name}
+                    launchStartTime={launch.windowstart}
+                    rocketName={launch.rocket.name}
+                    rocketAgencies={launch.rocket.agencies}
+                    launchLocation={launch.location.name}
+                    rocketImage={launch.rocket.imageUrl}>
+                 </LaunchInfoComp>
+            )
+        })
         return(
             <div>
             <div>
@@ -50,6 +69,9 @@ class Search extends Component {
                         Search
                         </button>
                     </div>
+                    <div>
+                   {LaunchInfoNodes}
+                        </div>
                     </div>
         )
     }
