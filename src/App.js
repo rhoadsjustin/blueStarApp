@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Search from './Search.js';
+import Favorites from './Favorites';
 
 class App extends Component {
   render() {
@@ -13,19 +14,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Blue Star Sports</h1>
           <NavLink 
-            to="/search"
-            activeStyle
-            activeClassName>Search</NavLink>
+            to="/search">Search</NavLink>
           <NavLink
-            to="/favorites"
-            activeStyle
-            activeClassName>| Favorites</NavLink>
+            to="/favorites">| Favorites</NavLink>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
        <Route path='/search' component={Search} />
-       
+       <Route path='/favorites' component={Favorites} />
+
       </div>
       </Router>
     );

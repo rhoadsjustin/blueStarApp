@@ -1,18 +1,23 @@
 import React, { Component} from 'react'
+import './launchInfo.css'
 
 class LaunchInfo extends Component {
+    
     render(){
         return(
-            <div>
-                <li id={this.props.launchID}>
-                    <h2>Rocket Name: {this.props.rocketName}</h2>
-                    <h2>Launch Name:{this.props.launchName}</h2>
-                    <h4>Launch Start:{this.props.launchStartTime}</h4>
-                    <p>Launch Location:{this.props.launchLocation}</p>
-                    <p>Agencies: {this.props.agencyInfoNames} </p>
-                    <img src={this.props.rocketImage} alt="rocket"/>
-                    </li>
+            <div className="col-md-8 offset-md-3" id={this.props.countryCode}>
+                <div className="card w-75" id={this.props.launchID}>
+                    <div className="card-body">
+                        <img className="card-img-top rocketPic" src={this.props.rocketImage} alt="Rocket" />
+                        <h4 className="card-title">{this.props.rocketName}</h4>
+                        <p className="card-text">Launch Name:{this.props.launchName}</p>
+                        <p className="card-text">Launch Start:{this.props.launchStartTime}</p>
+                        <p className="card-text">Launch Location:{this.props.launchLocation}</p>
+                        <p className="card-text">Agencies: {this.props.agencyInfoNames} </p>
+                        <button>Add to Favorites</button>
+                    </div>
                 </div>
+            </div>
         )
     }
 }

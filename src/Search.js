@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LaunchInfoComp from './components/LaunchInfoComp'
+import './search.css'
 class Search extends Component {
     constructor(){
         super()
@@ -10,6 +11,7 @@ class Search extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.getLaunchSchedule = this.getLaunchSchedule.bind(this);
+        // this.handleAgencyFilter = this.handleAgencyFilter.bind(this);
     }
 
     handleChange(e) {
@@ -44,12 +46,16 @@ class Search extends Component {
     }
 
     render(){
+
         //launch info
         const LaunchInfoNodes = this.state.launchArray.map((launch) => {
             //list of agencies
            const agencyNodes = launch.rocket.agencies.map((agency) => {
                 var agencyNames = agency.name
                 return agencyNames
+            })
+            const agencyAbbrv = launch.rocket.agencies.map((agency) => {
+                return agency.abbrev
             })
             return(
                 <LaunchInfoComp
@@ -58,30 +64,35 @@ class Search extends Component {
                     launchName={launch.name}
                     launchStartTime={launch.windowstart}
                     agencyInfoNames={agencyNodes}
+                    agencyAbbr={agencyAbbrv}
                     rocketName={launch.rocket.name}
                     launchLocation={launch.location.name}
-                    rocketImage={launch.rocket.imageUrl}>
+                    countryCode={launch.location.countryCode}
+                    rocketImage={launch.rocket.imageURL}>
                  </LaunchInfoComp>
             )
-        })
+        });
+
         return(
             <div>
-            <div>
-                This is the search screen
+                <div>
+                    <div className="col-md-8 offset-md-2" id="searchInput">
                     <input type="text" id="startDate" value={this.state.startDate} onChange={this.handleChange} placeholder="Start Date eg.2015-08-20 " />
                     <input type="text" id="endDate" value={this.state.endDate} onChange={this.handleChange} placeholder="End Date eg.2015-08-28" />
-                </div>
-                <div>
-                    <button onClick={this.getLaunchSchedule}>
+                    <button 
+                        onClick={this.getLaunchSchedule}>
                         Search
                         </button>
                     </div>
+                </div>
                     <div>
-                        <ul>
-                   {LaunchInfoNodes}
-                   </ul>
+                        <div className="center-align">
+                            <button>Sort By Country</button>
+                            <button>Sort By Agency</button>
                         </div>
-                    </div>
+                            {LaunchInfoNodes}
+                </div>
+             </div>
         )
     }
 }
