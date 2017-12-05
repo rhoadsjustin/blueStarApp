@@ -30,6 +30,9 @@ export class FavoriteStore {
     addFavorite(obj) {
         this.favorites.push(new Favorite(obj))
     }
+    removeFavorite(obj) {
+        this.favorites.remove(obj)
+    }
 }
 const store = new FavoriteStore()
 

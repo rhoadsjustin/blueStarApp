@@ -8,14 +8,29 @@ class LaunchInfo extends Component {
     constructor(){
         super()
         this.state = {
-            isFavorite: false
+            clicked: "Add to Favorites",
+            isAdded: 'false'
         }
     }
     addNewFavorite() {
+        
             console.log(store)
             console.log(this.props)
             store.addFavorite(this.props);
+            this.setState({
+                clicked: "Favorited",
+                isAdded: true
+            })
+        }
+    removeFromFavorites(){
+
+        store.removeFavorite(this.props);
+        this.setState({
+            clicked: "Add to Favorites",
+            isAdded: false
+        })
     }
+
     render(){
         return(
             <div className="col-md-8 offset-md-3" id={this.props.countryCode}>
@@ -27,7 +42,7 @@ class LaunchInfo extends Component {
                         <p className="card-text">Launch Start:{this.props.launchStartTime}</p>
                         <p className="card-text">Launch Location:{this.props.launchLocation}</p>
                         <p className="card-text">Agencies: {this.props.agencyInfoNames} </p>
-                        <button onClick={this.addNewFavorite.bind(this)}>Add to Favorites</button>
+                        <button onClick={this.props.isFavorited ? this.removeFromFavorites.bind(this) : this.addNewFavorite.bind(this)}>{this.props.isFavorited ? "Remove Favorite" : this.state.clicked}</button>
                     </div>
                 </div>
             </div>
