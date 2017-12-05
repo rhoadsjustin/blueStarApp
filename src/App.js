@@ -4,7 +4,6 @@ import logo from './logo.svg';
 import './App.css';
 import Search from './Search.js';
 import Favorites from './Favorites';
-
 class App extends Component {
   render() {
     return (
@@ -19,9 +18,8 @@ class App extends Component {
             to="/favorites">| Favorites</NavLink>
         </header>
 
-       <Route path='/search' component={Search} />
-       <Route path='/favorites' component={Favorites} />
-
+       <Route path='/search' component={Search} store={this.props.store}/>
+       <Route path='/favorites' component={Favorites} store={this.props.store}/>
       </div>
       </Router>
     );

@@ -1,8 +1,14 @@
 import React, { Component} from 'react'
 import './launchInfo.css'
+import { observer } from 'mobx-react'
+import store from '../models/FavoritesModel'
 
+@observer 
 class LaunchInfo extends Component {
-    
+    addNewFavorite() {
+            console.log(store)
+            store.addFavorite(this);
+    }
     render(){
         return(
             <div className="col-md-8 offset-md-3" id={this.props.countryCode}>
@@ -14,7 +20,7 @@ class LaunchInfo extends Component {
                         <p className="card-text">Launch Start:{this.props.launchStartTime}</p>
                         <p className="card-text">Launch Location:{this.props.launchLocation}</p>
                         <p className="card-text">Agencies: {this.props.agencyInfoNames} </p>
-                        <button>Add to Favorites</button>
+                        <button onClick={this.addNewFavorite.bind(this)}>Add to Favorites</button>
                     </div>
                 </div>
             </div>

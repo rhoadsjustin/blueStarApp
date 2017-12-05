@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LaunchInfoComp from './components/LaunchInfoComp'
+import { observer } from 'mobx-react'
 import './search.css'
+
+@observer
 class Search extends Component {
     constructor(){
         super()
