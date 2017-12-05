@@ -5,9 +5,16 @@ import store from '../models/FavoritesModel'
 
 @observer 
 class LaunchInfo extends Component {
+    constructor(){
+        super()
+        this.state = {
+            isFavorite: false
+        }
+    }
     addNewFavorite() {
             console.log(store)
-            store.addFavorite(this);
+            console.log(this.props)
+            store.addFavorite(this.props);
     }
     render(){
         return(

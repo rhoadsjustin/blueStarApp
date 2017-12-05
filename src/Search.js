@@ -94,7 +94,7 @@ class Search extends Component {
                             <button>Sort By Agency</button>
                         </div>
                             {LaunchInfoNodes}
-                </div>
+                    </div>
              </div>
         )
     }

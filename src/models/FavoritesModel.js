@@ -11,15 +11,15 @@ class Favorite {
     @observable countryCode;
     @observable rocketImage;
 
-    constructor(launch){
-        this.launchName = launch.name;
-        this.launchStartTime = launch.windowstart
-        // this.agencyInfoNames = agencyNodes
-        // this.agencyAbbr = agencyAbbrv
-        this.rocketName = launch.rocketName
-        this.launchLocation = launch.launchLocation
-        this.countryCode = launch.countryCode
-        this.rocketImage = launch.rocketImage
+    constructor(obj){
+        this.launchName = obj.launchName;
+        this.launchStartTime = obj.launchStartTime
+        this.agencyInfoNames = obj.agencyInfoNames
+        this.agencyAbbr = obj.agencyAbbrv
+        this.rocketName = obj.rocketName
+        this.launchLocation = obj.launchLocation
+        this.countryCode = obj.countryCode
+        this.rocketImage = obj.rocketImage
 
     }
 }
